@@ -4,8 +4,9 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw-ucrt
 
 DEPENDENCIES
 
 BUNDLED WITH
-   2.1.4
+   2.3.26
