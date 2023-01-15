@@ -28,7 +28,7 @@ listaJuegos.css('.format_row').each do |post|
 end
 
 CSV.open('archivos/informacion.csv', 'w') do |csv|
-    csv << %w"nom, id, paises, fortuna, juegos"
+    csv << %w"nom id paises fortuna juegos"
   end
 flag = 0
 nombres.each do |nom|
