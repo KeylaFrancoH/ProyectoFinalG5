@@ -1,21 +1,22 @@
 # This is a sample Python script.
 
 # Keyla Franco Hidalgo - Avance 2
-import  tkinter as tk
-from tkinter import *
+import tkinter as tk
+
 import matplotlib.pyplot
+
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg,
     NavigationToolbar2Tk
 )
+
+
 def datos(nomArchivo):
-    juegos= []
-    cant =[]
+    juegos = []
+    cant = []
     fichero = open(nomArchivo)
     fichero.readline()
     for linea in fichero.readlines():
@@ -23,6 +24,7 @@ def datos(nomArchivo):
         juegos.append(data[0].strip())
         cant.append(float(data[-1].strip()))
     return juegos, cant
+
 
 class App(tk.Tk):
 
@@ -35,20 +37,18 @@ class App(tk.Tk):
         juegos, cant_jugadores = datos("archivos/veinteJugadores.csv")
         # prepare data cod
         nombre, porcentaje = datos("archivos/porcentajeCOD.csv")
-        #prepare data for 10 con mejores promedios
-        nomJuego, promedio = datos("archivos/diezTorneos.csv")
+        # prepare data for 10 con mejores promedios
+        nomjuego, promedio = datos("archivos/diezTorneos.csv")
 
         # create a figure
-        figure = Figure(figsize=(8, 4), dpi=60)
-        figure2 = Figure(figsize=(8, 4), dpi=60)
-        figure3 = Figure(figsize=(8, 4), dpi=60)
-
+        figure = Figure(figsize=(9 ,4), dpi=60)
+        figure2 = Figure(figsize=(9, 4), dpi=60)
+        figure3 = Figure(figsize=(9, 4), dpi=60)
 
         # create FigureCanvasTkAgg object
         figure_canvas = FigureCanvasTkAgg(figure, self)
         figure_canvas2 = FigureCanvasTkAgg(figure2, self)
         figure_canvas3 = FigureCanvasTkAgg(figure3, self)
-
 
         # create the toolbar
         NavigationToolbar2Tk(figure_canvas, self)
@@ -71,18 +71,16 @@ class App(tk.Tk):
         axes2.set_title('Distribución de porcentajes COD', fontsize=10, fontweight="bold")
 
         # create the barchart from 10 mejores promedios
-        axes3.bar(nomJuego, promedio)
+        axes3.bar(nomjuego, promedio)
         axes3.set_title('Promedios de los 10 mejores juegos en torneos', fontsize=10, fontweight="bold")
         axes3.set_xlabel('Juegos', fontsize=10, fontweight="bold")
-        axes3.set_ylabel('Promedio',fontsize=10, fontweight="bold")
+        axes3.set_ylabel('Promedio', fontsize=10, fontweight="bold")
 
         figure_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=100)
         figure_canvas2.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=100)
         figure_canvas3.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=100)
 
 
-
 if __name__ == '__main__':
     app = App()
     app.mainloop()
-
