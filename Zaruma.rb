@@ -22,7 +22,7 @@ end
 link = 'https://www.esportsearnings.com/players'
 datosHTML = URI.open(link)
 datosParseados = Nokogiri::HTML(datosHTML.read)
-separamos la pagina
+# separamos la pagina
 listaJuegos = datosParseados.css('.detail_list_box')
 cont = 0
 id = []
