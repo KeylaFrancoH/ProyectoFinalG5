@@ -3,30 +3,6 @@ require 'nokogiri' # formatear, parsear a html
 require 'csv' # escribir y leer csv
 #Keyla Fernanda Franco Hidalgo - > scraping
 
-class Ordenar
-  attr_accessor :lista, :juegos
-  def initialize(lista, juegos)
-    @lista = lista
-    @juegos = juegos
-  end
-  def guardar (nomArchivo,numero)
-    contador = 0
-    veinteJugadores = lista.sort.reverse[...numero]
-    for elem in veinteJugadores
-        ind= veinteJugadores.index(elem)
-        titulo= juegos[ind]
-        contador+=1
-        juegos.delete_at(ind)
-        CSV.open("archivos/#{nomArchivo}.csv", 'a') do |csv|
-          csv << [titulo, elem]
-        end
-    end
-  end
-  
-end
-
-
-
 link = 'https://www.esportsearnings.com/games'
 datosHTML = URI.open(link)
 datosParseados = Nokogiri::HTML(datosHTML.read)
@@ -85,15 +61,6 @@ end
 CSV.open('archivos/datosTorneos.csv', 'w') do |csv|
     csv << %w"Nombre  Premios Cantidad_Jugadores Cantidad_Torneos"
 end
-CSV.open('archivos/veinteJugadores.csv', 'w') do |csv|
-  csv << %w"Nombre Cant_Jugadores"
-end
-CSV.open('archivos/diezTorneos.csv', 'w') do |csv|
-  csv << %w"Nombre Cant_Torneos"
-end
-CSV.open('archivos/porcentajeCOD.csv', 'w') do |csv|
-  csv << %w"Nombre premioDado totalPremiosCOD PorcentajeGanado"
-end
 
 
 #Guardar datos
@@ -108,28 +75,3 @@ juegos.each do |nom|
   flag += 1
 end
 
-# 20 juegos con más 'pro-players'
-best20 = Ordenar.new(cant_jugadores, juegos)
-best20.guardar("veinteJugadores", 20)
-#10 juegos con mejor promedio de premios por torneo
-best10 = Ordenar.new(cant_torneos, juegos)
-best10.guardar("diezTorneos", 10)
-#distribución de los premios entregados por cada franquicia de Call of Duty
-total = 0
-file = CSV.open('archivos/datosTorneos.csv').read
-file.delete_at(0)
-file.each do |item|
-  if item[0].include?('Call of Duty')
-    total += item[1].to_f
-  end
-end
-file.each do |item|
-  if item[0].include?('Call of Duty')
-    porcentaje = (item[1].to_f/total) * 100
-    CSV.open('archivos/porcentajeCOD.csv', 'a') do |csv|
-      csv << [item[0], item[1].to_f, total, porcentaje.truncate(2)]
-    end
-  end
-end
-
-    
