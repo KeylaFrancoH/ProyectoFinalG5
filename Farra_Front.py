@@ -21,6 +21,8 @@ def top_games():
     plot.barh(fpp.top_rating.name, fpp.top_rating.rating, )
     for i, v in enumerate(fpp.top_rating.rating):
         plot.text(v, i, f'rat: {v} year: {fpp.top_rating.year[i]}', color='black', fontweight='bold')
+    plot.set_title('Top 10 de los juegos con mayor rating del 2021- 2022')
+    plot.axis('on')
     canvas.draw()
 #----- Pregunta 2 -----
 def genres_distribution():
@@ -28,6 +30,7 @@ def genres_distribution():
         plot.clear()
     plot.plot(fpp.genres_2021_df.Genres, fpp.genres_2021_df.counts, fpp.genres_2022_df.Genres, fpp.genres_2022_df.counts)
     plot.legend(['2021', '2022'], loc=1)
+    plot.set_title('Distribución de géneros entre el 2021 - 2022')
     canvas.draw()
 
 #----- Pregunta 3 -----
@@ -36,6 +39,7 @@ def top_genres():
         plot.clear()
     plot.pie(fpp.genres_total_df.counts, labels=fpp.genres_total_df.Genres,
             autopct=lambda x: '{:.0f}'.format(x * fpp.genres_total_df.counts.sum() / 100))
+    plot.set_title('Top 5 de géneros de más juegos del 2021- 2022')
     canvas.draw()
 
 frame_top = tk.Frame(root)
