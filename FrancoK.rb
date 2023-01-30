@@ -3,6 +3,29 @@ require 'nokogiri' # formatear, parsear a html
 require 'csv' # escribir y leer csv
 #Keyla Fernanda Franco Hidalgo - > scraping
 
+class Torneos
+  attr_accessor :juegos, :premio, :cant_jugadores, :cant_torneos
+  
+  def initialize(juegos, premio, cant_jugadores, cant_torneos)
+    @juegos = juegos
+    @premio = premio
+    @cant_jugadores = cant_jugadores
+    @cant_torneos = cant_torneos
+  end
+  def guardar
+    flag = 0
+    @juegos.each do |nom|
+    puts nom, @premio[flag], @cant_jugadores[flag], @cant_torneos[flag]
+    puts
+ 
+    CSV.open('archivos/datosTorneos.csv', 'a') do |csv|
+      csv << [nom, @premio[flag], @cant_jugadores[flag], @cant_torneos[flag]]
+    end
+    flag += 1
+  end
+end
+
+
 link = 'https://www.esportsearnings.com/games'
 datosHTML = URI.open(link)
 datosParseados = Nokogiri::HTML(datosHTML.read)
@@ -64,14 +87,7 @@ end
 
 
 #Guardar datos
-flag = 0
-juegos.each do |nom|
-  puts nom, premio[flag], cant_jugadores[flag], cant_torneos[flag]
-  puts
- 
-  CSV.open('archivos/datosTorneos.csv', 'a') do |csv|
-    csv << [nom, premio[flag], cant_jugadores[flag], cant_torneos[flag]]
-  end
-  flag += 1
+data = Torneos.new(juegos, premio, cant_jugadores, cant_torneos)
+data.guardar
 end
 
