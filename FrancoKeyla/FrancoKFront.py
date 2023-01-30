@@ -4,6 +4,7 @@ from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.figure import Figure
 import funcDatosFranco as fk
+#-------------------------------------FUNCIONES-----------------------------------------------------------------
 
 #-------------------------------------CREAR LISTAS--------------------------------------------------------------
 juegos, premios, cant_jugadores, cant_torneos = fk.formarlistas()
@@ -17,13 +18,13 @@ torneos = fk.guardar("diezTorneos", juegos, cant_torneos, 10)
 cod = fk.callofduty()
 
 #-----------------------------------OBTENER DATOS PARA LOS GRÁFICOS------------------------------------------------
-juegos, cant_jugadores = fk.datos("archivos/veinteJugadores.csv")
+juegos, cant_jugadores = fk.datos("../archivos/veinteJugadores.csv")
 # prepare data cod
-nombre, porcentaje = fk.datos("archivos/porcentajeCOD.csv")
+nombre, porcentaje = fk.datos("../archivos/porcentajeCOD.csv")
 # prepare data for 10 juegos ccon mejores promedios
 
 # datos de los mejores 10 juegos que han jugado más torneos
-nomjuego, wintorneo = fk.datos("archivos/diezTorneos.csv")
+nomjuego, wintorneo = fk.datos("../archivos/diezTorneos.csv")
 
 
 #----------------------------------Funciones ventana----------------------------------------------------------------------

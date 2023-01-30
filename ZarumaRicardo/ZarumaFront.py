@@ -43,9 +43,9 @@ def topPaises(nomArchivo):
         cantidades.append(valor.replace("\n", ""))
     return paises[:5], cantidades[:5]
 
-print(datosGananciasxJugador("archivos/topGanancias.csv"))
-print(datosGananciasxJuegos("archivos/topGananciasxJuegos.csv"))
-print(topPaises("archivos/toppaises.csv"))
+print(datosGananciasxJugador("../archivos/topGanancias.csv"))
+print(datosGananciasxJuegos("../archivos/topGananciasxJuegos.csv"))
+print(topPaises("../archivos/toppaises.csv"))
 
 class App(tk.Tk):
 
@@ -55,9 +55,9 @@ class App(tk.Tk):
         self.title('PREMIOS OTORGADOS EN VIDEOJUEGOS')
 
         # prepare data
-        jugador, ganancia = datosGananciasxJugador("archivos/topGanancias.csv")
-        juegos, recaudacion = datosGananciasxJuegos("archivos/topGananciasxJuegos.csv")
-        paises, cantidad = topPaises("archivos/toppaises.csv")
+        jugador, ganancia = datosGananciasxJugador("../archivos/topGanancias.csv")
+        juegos, recaudacion = datosGananciasxJuegos("../archivos/topGananciasxJuegos.csv")
+        paises, cantidad = topPaises("../archivos/toppaises.csv")
         # create a figure
         figure = Figure(figsize=(10, 4), dpi=100)
         figure2 = Figure(figsize=(10, 4), dpi=100)

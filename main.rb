@@ -1,3 +1,3 @@
-require "./Zaruma"
-require "./FrancoK"
-require "./FarraJ"
+require "./ZarumaRicardo/Zaruma"
+require "./FrancoKeyla/FrancoK"
+require "./FarraJoby/FarraJ"

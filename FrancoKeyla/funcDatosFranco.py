@@ -4,7 +4,7 @@ import numpy as np
 
 
 def guardar(nomarchivo, lista1, lista2, num):
-    with open("archivos/" + nomarchivo + ".csv", 'w', newline='') as csvfile:
+    with open("../archivos/" + nomarchivo + ".csv", 'w', newline='') as csvfile:
         wr = csv.writer(csvfile, dialect='excel', delimiter=',')
         wr.writerow(["NOMBRE", "CANTIDADES"])
     ajuegos = np.array(lista1)
@@ -13,19 +13,19 @@ def guardar(nomarchivo, lista1, lista2, num):
     sorted_b = list(ajugadores[inds][0:num])
     sorted_a = list(ajuegos[inds][0:num])
     for i in range(len(sorted_a)):
-        with open("archivos/" + nomarchivo + ".csv", 'a', newline='') as csvfile:
+        with open("../archivos/" + nomarchivo + ".csv", 'a', newline='') as csvfile:
             wr = csv.writer(csvfile, dialect='excel', delimiter=',')
             wr.writerow([sorted_a[i], sorted_b[i]])
 
 
 def callofduty():
-    with open("archivos/porcentajeCOD.csv", 'w', newline='') as csvfile:
+    with open("../archivos/porcentajeCOD.csv", 'w', newline='') as csvfile:
         wr = csv.writer(csvfile, dialect='excel', delimiter=',')
         wr.writerow(["NOMBRE","PORCENTAJE"])
     total = 0
     totales = []
     nombres = []
-    file = open("archivos/datosTorneos.csv")
+    file = open("../archivos/datosTorneos.csv")
     file.readline()
     for item in file.readlines():
         datos = item.split(",")
@@ -35,7 +35,7 @@ def callofduty():
             nombres.append((datos[0]))
     porcentaje = [(i / total) * 100 for i in totales]
     for t in range(len(totales)):
-        with open("archivos/porcentajeCOD.csv", 'a', newline='') as csvfile:
+        with open("../archivos/porcentajeCOD.csv", 'a', newline='') as csvfile:
             wr = csv.writer(csvfile, dialect='excel', delimiter=',')
             wr.writerow([nombres[t],round(porcentaje[t],2)])
 
@@ -45,7 +45,7 @@ def formarlistas():
     premio = []
     cantjugadores = []
     canttorneos = []
-    file = open("archivos/datosTorneos.csv")
+    file = open("../archivos/datosTorneos.csv")
     file.readline()
     for linea in file.readlines():
         data = linea.split(",")

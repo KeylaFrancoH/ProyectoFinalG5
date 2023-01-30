@@ -14,7 +14,7 @@ class Jugador
   end
 
   def guardar
-    CSV.open('informacion.csv', 'a') do |csv|
+    CSV.open('archivos/informacion.csv', 'a') do |csv|
       csv << [@nombre, @id, @pais, @fortuna, @juego]
     end
   end
@@ -50,14 +50,14 @@ nombres.each do |nom|
   flag += 1
 end
 des = 0
-CSV.foreach('informacion.csv') do |row|
+CSV.foreach('archivos/informacion.csv') do |row|
   puts des + 1
   puts row[0]
   puts row[1]
   puts row[2]
   puts row[3]
   puts row[4]
-  CSV.open('topGanancias.csv', 'a') do |csv|
+  CSV.open('archivos/topGanancias.csv', 'a') do |csv|
     csv << [row[0], row[1], row[2], row[3], row[4]]
   end
   des += 1
@@ -65,7 +65,7 @@ CSV.foreach('informacion.csv') do |row|
 end
 juegos = []
 ganancias = []
-CSV.foreach('informacion.csv') do |row|
+CSV.foreach('archivos/informacion.csv') do |row|
   valor = row[3].split('$')
   ganancia = valor[1].delete(',').to_f.round(1)
   juego = row[4]
@@ -76,18 +76,19 @@ CSV.foreach('informacion.csv') do |row|
     juegos.append(juego)
     ganancias.append(ganancia.round(1))
   end
-end
 
+
+end
 juegos.each do |elem|
   ind = juegos.index(elem)
   ganancia = ganancias[ind]
-  CSV.open('topGananciasxJuegos.csv', 'a') do |csv|
+  CSV.open('archivos/topGananciasxJuegos.csv', 'a') do |csv|
     csv << [elem, ganancia]
   end
 end
 paises = []
 cant = []
-CSV.foreach('informacion.csv') do |row|
+CSV.foreach('archivos/informacion.csv') do |row|
   pais = row[2]
   if paises.include? pais
     ind = paises.index(pais)
@@ -100,7 +101,7 @@ end
 paises.each do |elem|
   ind = paises.index(elem)
   cantidad = cant[ind]
-  CSV.open('toppaises.csv', 'a') do |csv|
+  CSV.open('archivos/toppaises.csv', 'a') do |csv|
     csv << [elem, cantidad]
   end
 end
