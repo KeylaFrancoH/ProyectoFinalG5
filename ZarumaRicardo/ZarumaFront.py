@@ -28,6 +28,13 @@ def _clear(canvas):
 def top_10jugadores():
     if len(canvas.get_tk_widget().find_all()) >= 1:
         plot.clear()
+        plot2.clear()
+        plot.axis("off")
+        plot.set_xlabel(None)
+        plot.set_ylabel(None)
+        plot2.axis("off")
+        plot2.set_xlabel(None)
+        plot2.set_ylabel(None)
     fig.subplots_adjust(left=0.17)
     plot.bar(jugador, ganajugador, color="green")
     plot.set_title('10 Jugadores con más dinero en premios', fontsize=12, fontweight="bold")
@@ -41,7 +48,14 @@ def top_10jugadores():
 def top_Juegos():
     if len(canvas.get_tk_widget().find_all()) >= 1:
         plot.clear()
-    fig.subplots_adjust(left=0.17)
+        plot2.clear()
+        plot.axis("off")
+        plot.set_xlabel(None)
+        plot.set_ylabel(None)
+        plot2.axis("off")
+        plot2.set_xlabel(None)
+        plot2.set_ylabel(None)
+        fig.subplots_adjust(left=0.17)
     plot.barh(juegos, ganancias)
     for i, v in enumerate(ganancias):
         plot.text(v, i, f'cant: {v}', fontsize=12, color='red')
@@ -55,11 +69,18 @@ def top_Juegos():
 def top_paises():
     if len(canvas.get_tk_widget().find_all()) >= 1:
         plot.clear()
-    plot.pie(cantidades, labels=paises, autopct="%0.2f %%")
-    plot.axis('on')
-    plot.set_title('Los 5 paises con más jugadores dentro del Top 100', fontsize=12, fontweight="bold")
+        plot2.clear()
+        plot.axis("off")
+        plot.set_xlabel(None)
+        plot.set_ylabel(None)
+        plot2.axis("off")
+        plot2.set_xlabel(None)
+        plot2.set_ylabel(None)
+    fig.subplots_adjust(left=0.17)
+    plot2.pie(cantidades, labels=paises, autopct="%0.2f %%")
+    plot2.axis('on')
+    plot2.set_title('Los 5 paises con más jugadores dentro del Top 100', fontsize=12, fontweight="bold")
     canvas.draw()
-
 #---------------------------------VENTANA----------------------------------------------------------------------
 
 root = tk.Tk()
@@ -71,7 +92,7 @@ frame_top.pack(fill='both', expand=True)
 
 fig = Figure(dpi=60)
 plot = fig.add_subplot(1, 1, 1)
-
+plot2 = fig.add_subplot(1, 1, 1)
 canvas = FigureCanvasTkAgg(fig, master=frame_top)
 canvas.draw()
 canvas.get_tk_widget().pack(fill='both', expand=True)
@@ -102,6 +123,5 @@ salir.pack(side='left', fill='x', expand=True)
 
 
 root.mainloop()
-
 
 
