@@ -9,7 +9,7 @@ def guardar(nomarchivo, lista1, lista2, num):
     inds = ajugadores.argsort()[::-1]
     sorted_b = list(ajugadores[inds][0:num])
     sorted_a = list(ajuegos[inds][0:num])
-    with open("../archivos/" + nomarchivo + ".csv", 'w', newline='') as csvfile:
+    with open("./archivos/" + nomarchivo + ".csv", 'w', newline='') as csvfile:
         wr = csv.writer(csvfile, dialect='excel', delimiter=',')
         wr.writerow(["NOMBRE", "CANTIDAD"])
         for i in range(len(sorted_a)):
@@ -20,7 +20,7 @@ def callofduty():
     total = 0
     totales = []
     nombres = []
-    file = open("../archivos/datosTorneos.csv")
+    file = open("./archivos/datosTorneos.csv")
     file.readline()
     for item in file.readlines():
         datos = item.split(",")
@@ -29,7 +29,7 @@ def callofduty():
             totales.append(float(datos[1]))
             nombres.append((datos[0]))
     porcentaje = [(i / total) * 100 for i in totales]
-    with open("../archivos/porcentajeCOD.csv", 'w', newline='') as csvfile:
+    with open("./archivos/porcentajeCOD.csv", 'w', newline='') as csvfile:
         wr = csv.writer(csvfile, dialect='excel', delimiter=',')
         wr.writerow(["NOMBRE", "PORCENTAJE"])
         for t in range(len(totales)):
@@ -41,7 +41,7 @@ def formarlistas():
     premio = []
     cantjugadores = []
     canttorneos = []
-    file = open("../archivos/datosTorneos.csv")
+    file = open("./archivos/datosTorneos.csv")
     file.readline()
     for linea in file.readlines():
         data = linea.split(",")

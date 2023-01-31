@@ -5,7 +5,7 @@ import numpy as np
 def GananciasxJuegos(fuente,nuevo):
     juegos = []
     ganancias = []
-    with open("../archivos/" + fuente + ".csv", 'r', newline='') as read_obj:
+    with open("./archivos/" + fuente + ".csv", 'r', newline='') as read_obj:
         csv_reader = csv.reader(read_obj)
         for row in csv_reader:
             juego = row[4]
@@ -16,7 +16,7 @@ def GananciasxJuegos(fuente,nuevo):
             else:
                 ind=juegos.index(juego)
                 ganancias[ind]+=ganancia
-    with open("../archivos/"+nuevo+".csv", 'w', newline='') as new:
+    with open("./archivos/"+nuevo+".csv", 'w', newline='') as new:
         writer = csv.writer(new)
         for elem in juegos:
             ind = juegos.index(elem)
@@ -27,7 +27,7 @@ def TopGananciasJugador(fuente,nuevo):
     jugadores = []
     ganancias = []
     nicknames = []
-    with open("../archivos/" + fuente + ".csv", 'r', newline='') as read_obj:
+    with open("./archivos/" + fuente + ".csv", 'r', newline='') as read_obj:
         csv_reader = csv.reader(read_obj)
         for row in csv_reader:
             jugador = row[0]
@@ -37,7 +37,7 @@ def TopGananciasJugador(fuente,nuevo):
                 jugadores.append(jugador)
                 ganancias.append(ganancia)
                 nicknames.append(nickname)
-    with open("../archivos/"+nuevo+".csv", 'w', newline='') as new:
+    with open("./archivos/"+nuevo+".csv", 'w', newline='') as new:
         writer = csv.writer(new)
         cont=0
         for elem in jugadores:
@@ -50,7 +50,7 @@ def TopGananciasJugador(fuente,nuevo):
 def TopPaises(fuente, nuevo):
     paises = []
     cantidad = []
-    with open("../archivos/" + fuente + ".csv", 'r', newline='') as read_obj:
+    with open("./archivos/" + fuente + ".csv", 'r', newline='') as read_obj:
         csv_reader = csv.reader(read_obj)
         for row in csv_reader:
             pais = row[2]
@@ -62,7 +62,7 @@ def TopPaises(fuente, nuevo):
                 cantidad[ind] += 1
     union=dict(zip(paises,cantidad))
     ordenar=sorted(union.items(), key=lambda x:x[1])
-    with open("../archivos/" + nuevo + ".csv", 'w', newline='') as new:
+    with open("./archivos/" + nuevo + ".csv", 'w', newline='') as new:
         writer = csv.writer(new)
         for elem in ordenar[-5:]:
             data = elem
