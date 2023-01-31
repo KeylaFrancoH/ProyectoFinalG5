@@ -67,3 +67,37 @@ def TopPaises(fuente, nuevo):
         for elem in ordenar[-5:]:
             data = elem
             writer.writerow(data)
+
+def traerGananciasxJugador(nomArchivo):
+    jugador = []
+    ganancia = []
+    fichero = open(nomArchivo)
+    for linea in fichero.readlines():
+        data = linea.split(",")
+        jugador.append(data[0])
+        valor=float(data[1])
+        ganancia.append(valor)
+    return jugador, ganancia
+
+def traerGananciasxJuegos(nomArchivo):
+    juegos = []
+    ganancia = []
+    fichero = open(nomArchivo)
+    for linea in fichero.readlines():
+        data = linea.split(",")
+        juegos.append(data[0])
+        valor = "".join(data[1:])
+        cantidad = valor.replace("$", "")
+        ganancia.append(float(cantidad.replace('"', "")))
+    return juegos, ganancia
+
+def traerTopPaises(nomArchivo):
+    paises = []
+    cantidades = []
+    fichero = open(nomArchivo)
+    for linea in fichero.readlines():
+        data = linea.split(",")
+        paises.append(data[0])
+        valor = data[1]
+        cantidades.append(valor.replace("\n", ""))
+    return paises, cantidades
