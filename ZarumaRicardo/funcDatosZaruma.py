@@ -77,6 +77,7 @@ def traerGananciasxJugador(nomArchivo):
         jugador.append(data[0])
         valor=float(data[1])
         ganancia.append(valor)
+    fichero.close()
     return jugador, ganancia
 
 def traerGananciasxJuegos(nomArchivo):
@@ -89,6 +90,7 @@ def traerGananciasxJuegos(nomArchivo):
         valor = "".join(data[1:])
         cantidad = valor.replace("$", "")
         ganancia.append(float(cantidad.replace('"', "")))
+    fichero.close()
     return juegos, ganancia
 
 def traerTopPaises(nomArchivo):
@@ -100,4 +102,5 @@ def traerTopPaises(nomArchivo):
         paises.append(data[0])
         valor = data[1]
         cantidades.append(valor.replace("\n", ""))
+    fichero.close()
     return paises, cantidades
