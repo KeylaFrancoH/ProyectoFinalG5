@@ -37,6 +37,13 @@ def _clear(canvas):
 def top_20jugadores():
     if len(canvas.get_tk_widget().find_all()) > 1:
         plot.clear()
+        plot2.clear()
+        plot.axis("off")
+        plot.set_xlabel(None)
+        plot.set_ylabel(None)
+        plot2.axis("off")
+        plot2.set_xlabel(None)
+        plot2.set_ylabel(None)
     fig.subplots_adjust(left=0.17)
     plot.barh(juegos, cant_jugadores)
     for i, v in enumerate(cant_jugadores):
@@ -52,9 +59,16 @@ def top_20jugadores():
 def porcentajeCOD():
     if len(canvas.get_tk_widget().find_all()) > 1:
         plot.clear()
-    plot.pie(porcentaje, labels=nombre, autopct="%0.2f %%")
-    plot.axis('on')
-    plot.set_title('Distribución de porcentajes COD', fontsize=12, fontweight="bold")
+        plot2.clear()
+        plot.axis("off")
+        plot.set_xlabel(None)
+        plot.set_ylabel(None)
+        plot2.axis("off")
+        plot2.set_xlabel(None)
+        plot2.set_ylabel(None)
+    plot2.pie(porcentaje, labels=nombre, autopct="%0.2f %%")
+    plot2.axis('on')
+    plot2.set_title('Distribución de porcentajes COD', fontsize=12, fontweight="bold")
     canvas.draw()
 
 
@@ -62,6 +76,13 @@ def porcentajeCOD():
 def top_10torneos():
     if len(canvas.get_tk_widget().find_all()) > 1:
         plot.clear()
+        plot2.clear()
+        plot.axis("off")
+        plot.set_xlabel(None)
+        plot.set_ylabel(None)
+        plot2.axis("off")
+        plot2.set_xlabel(None)
+        plot2.set_ylabel(None)
     fig.subplots_adjust(left=0.17)
     plot.bar(nomjuego, wintorneo)
     for i, v in enumerate(wintorneo):
@@ -83,6 +104,7 @@ frame_top.pack(fill='both', expand=True)
 
 fig = Figure(dpi=60)
 plot = fig.add_subplot(1, 1, 1)
+plot2 = fig.add_subplot(1, 1, 1)
 
 canvas = FigureCanvasTkAgg(fig, master=frame_top)
 canvas.draw()
