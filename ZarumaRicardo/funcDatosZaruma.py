@@ -60,14 +60,10 @@ def TopPaises(fuente, nuevo):
             else:
                 ind=paises.index(pais)
                 cantidad[ind] += 1
+    union=dict(zip(paises,cantidad))
+    ordenar=sorted(union.items(), key=lambda x:x[1])
     with open("../archivos/" + nuevo + ".csv", 'w', newline='') as new:
         writer = csv.writer(new)
-        for elem in paises:
-            ind = paises.index(elem)
-            data = [elem, cantidad[ind]]
+        for elem in ordenar[-5:]:
+            data = elem
             writer.writerow(data)
-
-
-GananciasxJuegos("informacion", "GananciasxJuegos")
-TopGananciasJugador("informacion", "TopGananciasJugador")
-TopPaises("informacion", "TopPaises")
