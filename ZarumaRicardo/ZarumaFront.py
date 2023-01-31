@@ -26,7 +26,7 @@ def _clear(canvas):
 # Pregunta 1 - ¿Cuáles son los 10 ‘pro-players’ que más han ganado en torneos?
 
 def top_10jugadores():
-    if len(canvas.get_tk_widget().find_all()) > 1:
+    if len(canvas.get_tk_widget().find_all()) >= 1:
         plot.clear()
     fig.subplots_adjust(left=0.17)
     plot.bar(jugador, ganajugador, color="green")
@@ -39,7 +39,7 @@ def top_10jugadores():
 
 # Pregunta 2 - ¿Cuáles fueron los juegos que más premios repartieron dentro del top 100 de jugadores?
 def top_Juegos():
-    if len(canvas.get_tk_widget().find_all()) > 1:
+    if len(canvas.get_tk_widget().find_all()) >= 1:
         plot.clear()
     fig.subplots_adjust(left=0.17)
     plot.barh(juegos, ganancias)
@@ -53,7 +53,7 @@ def top_Juegos():
 
 # Pregunta 3 - ¿Cuáles fueron los países con más jugadores en el top 100?
 def top_paises():
-    if len(canvas.get_tk_widget().find_all()) > 1:
+    if len(canvas.get_tk_widget().find_all()) >= 1:
         plot.clear()
     plot.pie(cantidades, labels=paises, autopct="%0.2f %%")
     plot.axis('on')
@@ -64,7 +64,7 @@ def top_paises():
 
 root = tk.Tk()
 root.attributes('-fullscreen', True)
-root.title("PREMIOS VIDEOJUEGOS - FRANCO KEYLA")
+root.title("TOP 100 JUGADORES - RICARDO ZARUMA")
 
 frame_top = tk.Frame(root)
 frame_top.pack(fill='both', expand=True)
