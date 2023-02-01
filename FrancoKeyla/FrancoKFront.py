@@ -9,11 +9,11 @@ import FrancoKeyla.funcDatosFranco as fk
 def FrancoK_Window(padre):
     padre.iconify() # Minimizar pantalla inicial
     # -----------------------------------OBTENER DATOS PARA LOS GRÁFICOS------------------------------------------------
-    juegos, cant_jugadores = fk.obtenerDatos(20)[0], fk.obtenerDatos(20)[1]
+    juegos, cant_jugadores = fk.obtenerDatos("jugadores",20)
     # prepare data cod
     nombreCOD, porcentaje = fk.callofduty()
     # datos de los mejores 10 juegos que han jugado más torneos
-    nomjuego, wintorneo = fk.obtenerDatos(10)[2], fk.obtenerDatos(10)[3]
+    nomjuego, wintorneo = fk.obtenerDatos("torneos",10)
 
 
     #----------------------------------Funciones ventana----------------------------------------------------------------------
