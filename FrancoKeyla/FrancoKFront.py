@@ -8,25 +8,12 @@ import FrancoKeyla.funcDatosFranco as fk
 
 def FrancoK_Window(padre):
     padre.iconify() # Minimizar pantalla inicial
-    #-------------------------------------CREAR LISTAS--------------------------------------------------------------
-    juegos, premios, cant_jugadores, cant_torneos = fk.formarlistas()
-
-    #------------------------------------GUARDAR NUEVOS DATOS--------------------------------------------------------
-    # 20 juegos con más 'pro-players'
-    jugadores = fk.guardar("veinteJugadores", juegos, cant_jugadores, 20)
-    # 10 juegos con mas cantidad de torneos jugados
-    torneos = fk.guardar("diezTorneos", juegos, cant_torneos, 10)
-    # distribución de los premios entregados por cada franquicia de Call of Duty
-    cod = fk.callofduty()
-
-    #-----------------------------------OBTENER DATOS PARA LOS GRÁFICOS------------------------------------------------
-    juegos, cant_jugadores = fk.datos("./archivos/veinteJugadores.csv")
+    # -----------------------------------OBTENER DATOS PARA LOS GRÁFICOS------------------------------------------------
+    juegos, cant_jugadores = fk.obtenerDatos(20)[0], fk.obtenerDatos(20)[1]
     # prepare data cod
-    nombre, porcentaje = fk.datos("./archivos/porcentajeCOD.csv")
-    # prepare data for 10 juegos ccon mejores promedios
-
+    nombreCOD, porcentaje = fk.callofduty()
     # datos de los mejores 10 juegos que han jugado más torneos
-    nomjuego, wintorneo = fk.datos("./archivos/diezTorneos.csv")
+    nomjuego, wintorneo = fk.obtenerDatos(10)[2], fk.obtenerDatos(10)[3]
 
 
     #----------------------------------Funciones ventana----------------------------------------------------------------------
@@ -70,7 +57,7 @@ def FrancoK_Window(padre):
             plot2.axis("off")
             plot2.set_xlabel(None)
             plot2.set_ylabel(None)
-        plot2.pie(porcentaje, labels=nombre, autopct="%0.2f %%")
+        plot2.pie(porcentaje, labels=nombreCOD, autopct="%0.2f %%")
         plot2.axis('on')
         plot2.set_title('Distribución de porcentajes COD', fontsize=12, fontweight="bold")
         canvas.draw()
@@ -94,7 +81,7 @@ def FrancoK_Window(padre):
         plot.set_title('10 juegos más jugados en torneos', fontsize=12, fontweight="bold")
         plot.axis('on')
         plot.set_xlabel('Juegos', fontsize=10, fontweight="bold")
-        plot.set_ylabel('Promedio', fontsize=10, fontweight="bold")
+        plot.set_ylabel('Cant_torneos jugados', fontsize=10, fontweight="bold")
         canvas.draw()
 
     #---------------------------------VENTANA----------------------------------------------------------------------
